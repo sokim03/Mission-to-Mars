@@ -3,7 +3,7 @@
 
 
 
-# Import Splinter and BeautifulSoup
+# Import Splinter and BeautifulSoup and Pandas
 from splinter import Browser
 from bs4 import BeautifulSoup as soup
 from webdriver_manager.chrome import ChromeDriverManager
@@ -35,7 +35,7 @@ def mars_news(browser):
     
     # Scrape Mars News
     # Visit the mars nasa news site
-    url = 'https://redplanetscience.com'
+    url = 'http://redplanetscience.com'
     browser.visit(url)
     
     # Optional delay for loading the page
@@ -46,7 +46,7 @@ def mars_news(browser):
     news_soup = soup(html, 'html.parser')
 
     # Add try/except for error handling
-    try
+    try:
         slide_elem = news_soup.select_one('div.list_text')
         
         # Use the parent element to find the first `a` tag and save it as `news_title`
@@ -77,7 +77,7 @@ def featured_image(browser):
     img_soup = soup(html, 'html.parser')
 
     # Add try/except for error handling
-    try
+    try:
         # Find the relative image url
         img_url_rel = img_soup.find('img', class_='fancybox-image').get('src')
         
@@ -87,7 +87,7 @@ def featured_image(browser):
     # Use the base URL to create an absolute URL
     img_url = f'https://spaceimages-mars.com/{img_url_rel}'
     
-return img_url
+    return img_url
 
 def mars_facts():
     # Add try/except for error handling
